@@ -2,6 +2,7 @@
 L1 cache miss L2 cache hit -> L1 cache hit
 
 Алгоритм: блочное умножение двух матриц
+
 #define SIZE_MATRIX 1000
 #define BLOCK_SIZE_MATRIX 250
 
