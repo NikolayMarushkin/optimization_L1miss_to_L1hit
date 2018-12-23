@@ -1,5 +1,5 @@
-# optimization L1miss to L1hit
-L1 cache miss L2 cache hit -> L1 cache hit
+# L1 cache miss L2 cache hit -> L1 cache hit
+
 
 Алгоритм: блочное умножение двух матриц
 
