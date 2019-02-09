@@ -1,4 +1,4 @@
-# Отчет L1 cache miss -> L1 cache hit
+# Отчет: L1 cache miss -> L1 cache hit
 Для данной задачи будут рассмотрены алгоритмы умножения матриц
 #### Характеристики компьютера:
 
@@ -58,6 +58,7 @@ for (int n = 0; n < GRID_SIZE_MATRIX; n++)
 ### Используя блочное умножение матриц:
 * при размере блока: #define BLOCK_SIZE_MATRIX 2000 и размере матрицы #define SIZE_MATRIX 2000
 
+
 24.4s
 
 ![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/BLOCK_SIZE_MATRIX%202000%20%23define%20SIZE_MATRIX%202000.jpg)
@@ -92,4 +93,5 @@ MatrixC[i * SIZE_MATRIX + j] += MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_
 MatrixC[i * SIZE_MATRIX + j] = MatrixC[i * SIZE_MATRIX + j] + MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_MATRIX + j];
 ```
  
+## Заключение:
 
