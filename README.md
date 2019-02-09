@@ -87,14 +87,3 @@ MatrixC[i * SIZE_MATRIX + j] = MatrixC[i * SIZE_MATRIX + j] + MatrixA[i * SIZE_M
 ```
  
 
-
-
-
-
-
-
-#### [L1 cache not miss.exe](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/L1%20cache%20no%20miss.exe)
-![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/L1_no_miss.jpg)
-
-
-
