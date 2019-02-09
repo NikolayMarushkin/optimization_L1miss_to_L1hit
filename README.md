@@ -39,12 +39,6 @@ for (int i = 0; i < SIZE_MATRIX; i++)
 
 * Размерность (высота/ширина) квадратной матрицы sqrt(3 145 728) = ~1774
 
-```с++
-//Замена стоки
-MatrixC[i * SIZE_MATRIX + j] = MatrixC[i * SIZE_MATRIX + j] + MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_MATRIX + j];
-//На
-MatrixC[i * SIZE_MATRIX + j] += MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_MATRIX + j];
-```
 
 
 ### Алгоритм: Блочное умножение матриц
@@ -61,13 +55,44 @@ for (int n = 0; n < GRID_SIZE_MATRIX; n++)
 
 ```
 
-### Используя блочне умножение матриц при размере блока: #define BLOCK_SIZE_MATRIX 2 и размере матрицы #define SIZE_MATRIX 2000
-16.07 sec.
+### Используя блочное умножение матриц:
+* при размере блока: #define BLOCK_SIZE_MATRIX 2000 и размере матрицы #define SIZE_MATRIX 2000
+24.4s
+#### [BLOCK_SIZE_MATRIX 2000 #define SIZE_MATRIX 2000.exe](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/BLOCK_SIZE_MATRIX%202000%20%23define%20SIZE_MATRIX%202000.exe)
+![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/BLOCK_SIZE_MATRIX%202000%20%23define%20SIZE_MATRIX%202000.jpg)
+
+* при размере блока: #define BLOCK_SIZE_MATRIX 2 и размере матрицы #define SIZE_MATRIX 2000
+16.31s
+![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/BLOCK_SIZE_MATRIX%202%20SIZE_MATRIX%202000.jpg)
+
+* при размере блока: #define BLOCK_SIZE_MATRIX 125 и размере матрицы #define SIZE_MATRIX 2000
+12.45s
+![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/BLOCK_SIZE_MATRIX%20125%20SIZE_MATRIX%202000.jpg)
+
+* при размере блока: #define BLOCK_SIZE_MATRIX 250 и размере матрицы #define SIZE_MATRIX 2000
+6.62s
+![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/1%20BLOCK_SIZE_MATRIX%20250%20%23define%20SIZE_MATRIX%202000.jpg)
+
+* при размере блока: #define BLOCK_SIZE_MATRIX 250 и размере матрицы #define SIZE_MATRIX 2000 и замене строки
+6.1s
+#### [2 BLOCK_SIZE_MATRIX 250 SIZE_MATRIX 2000.exe](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/2%20BLOCK_SIZE_MATRIX%20250%20SIZE_MATRIX%202000.exe)
+![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/2%20BLOCK_SIZE_MATRIX%20250SIZE_MATRIX%202000.jpg)
+
+
+```с++
+//Замена стоки
+MatrixC[i * SIZE_MATRIX + j] += MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_MATRIX + j];
+//На
+MatrixC[i * SIZE_MATRIX + j] = MatrixC[i * SIZE_MATRIX + j] + MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_MATRIX + j];
+```
+ 
 
 
 
-#### [L1 cache miss.exe](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/L1%20cache%20miss.exe)
-![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/L1_miss.jpg)
+
+
+
+
 #### [L1 cache not miss.exe](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/L1%20cache%20no%20miss.exe)
 ![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/L1_no_miss.jpg)
 
