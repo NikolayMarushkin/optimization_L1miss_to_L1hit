@@ -1,15 +1,70 @@
-# L1 cache miss -> L1 cache hit
+# Отчет L1 cache miss -> L1 cache hit
+Для данной задачи будут рассмотрены алгоритмы умножения матриц
+#### Характеристики компьютера:
+
+- CPU: Intel Core i7-8700K (L1	384 Kb, L2	1.5 Mb, L3	12 Mb)
+- RAM: DDR4 16 Gb
+#### Стандартный алгоритм умножениия матриц:
+
+```с++
+for (int i = 0; i < SIZE_MATRIX; i++) 
+	{
+		for (int j = 0; j < SIZE_MATRIX; j++)
+		{
+			for (int k = 0; k < SIZE_MATRIX; k++)
+			{
+				MatrixC[i * SIZE_MATRIX + j] += MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_MATRIX + k];
+			}
+		}
+	}
+```
+
+##### У данного подхода есть недостаток: при возрастащей размерности матрицы, процессор не сможет эффективно использовать кэш-память, поэтому необходимо использовать другой алгоритм: Блочное умножение матриц.
+
+Чтобы узнать какой максимальный размер блока матрицы использовать для получения L1 cache miss:
+* int = 4 byte
+
+* 384 Kb = 393 216 byte
+
+* Количество элементов int в матрице = 393 216 byte / 4 byte = 98 304
+
+* Размерность (высота/ширина) квадратной матрицы sqrt(98 304) = ~314
+
+Чтобы узнать какой максимальный размер блока матрицы использовать для получения L3 cache miss:
+* int = 4 byte
+
+* 12 Mb = 12 582 912 byte
+
+* Количество элементов int в матрице = 12 582 912 byte / 4 byte = 3 145 728
+
+* Размерность (высота/ширина) квадратной матрицы sqrt(3 145 728) = ~1774
+
+```с++
+//Замена стоки
+MatrixC[i * SIZE_MATRIX + j] = MatrixC[i * SIZE_MATRIX + j] + MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_MATRIX + j];
+//На
+MatrixC[i * SIZE_MATRIX + j] += MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_MATRIX + j];
+```
 
 
-Algorithm: block multiplication of two matrices
+### Алгоритм: Блочное умножение матриц
 
-#define SIZE_MATRIX 1000
-#define BLOCK_SIZE_MATRIX 250
+```с++
+for (int n = 0; n < GRID_SIZE_MATRIX; n++)
+		for (int m = 0; m < GRID_SIZE_MATRIX; m++)
+			for (int iter = 0; iter < GRID_SIZE_MATRIX; iter++)
+				for (int i = n * BLOCK_SIZE_MATRIX; i < (n + 1) * BLOCK_SIZE_MATRIX; i++)
+					for (int j = m * BLOCK_SIZE_MATRIX; j < (m + 1) * BLOCK_SIZE_MATRIX; j++)
+						for (int k = iter * BLOCK_SIZE_MATRIX; k < (iter + 1) * BLOCK_SIZE_MATRIX; k++)
+							MatrixC[i * SIZE_MATRIX + j] = MatrixC[i * SIZE_MATRIX + j] + MatrixA[i * SIZE_MATRIX + k] * MatrixB[k * SIZE_MATRIX + j];
 
-If SIZE_MATRIX = BLOCK_SIZE_MATRIX, then "no miss L1 cache", else "L1 miss cache"
 
-SIZE_MATRIX = BLOCK_SIZE_MATRIX: 2.942 sec.
-SIZE_MATRIX != BLOCK_SIZE_MATRIX: 1.969 sec.
+```
+
+### Используя блочне умножение матриц при размере блока: #define BLOCK_SIZE_MATRIX 2 и размере матрицы #define SIZE_MATRIX 2000
+16.07 sec.
+
+
 
 #### [L1 cache miss.exe](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/L1%20cache%20miss.exe)
 ![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/L1_miss.jpg)
