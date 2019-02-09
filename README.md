@@ -57,15 +57,21 @@ for (int n = 0; n < GRID_SIZE_MATRIX; n++)
 
 ### Используя блочное умножение матриц:
 * при размере блока: #define BLOCK_SIZE_MATRIX 2000 и размере матрицы #define SIZE_MATRIX 2000
+
 24.4s
+
 ![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/BLOCK_SIZE_MATRIX%202000%20%23define%20SIZE_MATRIX%202000.jpg)
 
 * при размере блока: #define BLOCK_SIZE_MATRIX 2 и размере матрицы #define SIZE_MATRIX 2000
+
 16.31s
+
 ![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/BLOCK_SIZE_MATRIX%202%20SIZE_MATRIX%202000.jpg)
 
 * при размере блока: #define BLOCK_SIZE_MATRIX 125 и размере матрицы #define SIZE_MATRIX 2000
+
 12.45s
+
 ![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/BLOCK_SIZE_MATRIX%20125%20SIZE_MATRIX%202000.jpg)
 
 * при размере блока: #define BLOCK_SIZE_MATRIX 250 и размере матрицы #define SIZE_MATRIX 2000
@@ -73,6 +79,7 @@ for (int n = 0; n < GRID_SIZE_MATRIX; n++)
 ![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/1%20BLOCK_SIZE_MATRIX%20250%20%23define%20SIZE_MATRIX%202000.jpg)
 
 * при размере блока: #define BLOCK_SIZE_MATRIX 250 и размере матрицы #define SIZE_MATRIX 2000 и замене строки
+
 6.1s
 
 ![L1_miss](https://github.com/NikolayMarushkin/optimization_L1miss_to_L1hit/blob/master/2%20BLOCK_SIZE_MATRIX%20250SIZE_MATRIX%202000.jpg)
